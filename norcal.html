@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+    <style>
+        .center{
+            margin: auto;
+            width: 30%;
+            border: 3px solid rgb(2, 2, 2);
+            padding: 10px;
 
+        }
+        .button {
+            background-color: #4cafa2; / Green /
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            margin-right: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app" />
+    <script type="text/babel">
+
+      class Hello extends React.Component {
+        constructor(props){
+          super(props)
+          this.state={
+            num1:0,
+            num2:0,
+            num3:0,
+            score:0
+
+          }
+        }
+        render() {
+          return (
+            <div class='center'>
+                <h1>BMI Index Calculator</h1>
+                <label>Weight(Kgs):</label>
+                <input type='text/babel' id='first' onChange={this.updateResponse1} value={this.state.num1}/><br /><br />
+                <label> Height(ft):</label>
+                <input type='text/babel' id='second' onChange={this.updateResponse2} value={this.state.num2} /> <br /><br />
+                <label> Height(in):</label>
+                <input type='text/babel' id='second' onChange={this.updateResponse3} value={this.state.num3} /> <br /><br />
+                
+                
+                
+
+                <button class='button' onClick={()=>this.multiply()} > Submit</button>
+                <h3> Result: </h3>
+                <div id='mySum'>
+                  {this.state.score}
+                  
+                  </div> 
+            </div>
+            
+          );
+        }
+
+        updateResponse1=(event)=>{
+          this.setState({
+            num1: event.target.value
+          })
+        }
+
+        updateResponse2=(event)=>{
+          this.setState({
+            num2:event.target.value
+          })
+        }
+
+        updateResponse3=(event)=>{
+          this.setState({
+            num3:event.target.value
+          })
+        }
+        
+        
+        
+
+        multiply(){
+          var a= this.state.num1;
+          var b= this.state.num2 * 0.3048;
+          var c= this.state.num3 *0.0254;
+          var e= b + c;
+          
+          
+          var k = a / (e*e);
+          this.setState({
+            score:k
+          })
+          
+        }
+
+        
+
+
+      }
+
+      
+
+      ReactDOM.render(<Hello />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>
